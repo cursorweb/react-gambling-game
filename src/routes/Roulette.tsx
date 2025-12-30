@@ -3,8 +3,10 @@ import { ProfileManagerContext } from "../state/profileContext";
 import { useChips } from "../state/chips";
 import { ChipManager } from "../components/ChipManager";
 import { Link } from "react-router";
+import { Canvas } from "../components/Canvas";
 
-export default function Roulette() {
+
+export function Roulette() {
     const { profile } = useContext(ProfileManagerContext);
     const chipsManager = useChips();
     const { chips, awardChips } = chipsManager;
@@ -15,6 +17,12 @@ export default function Roulette() {
 
             <p>Balance: {profile.balance}</p>
             <p>Chips: {chips}</p>
+
+            <Canvas draw={(ctx) => {
+                ctx.fillStyle = "green";
+                ctx.arc(50, 50, 50, 0, 2 * Math.PI);
+                ctx.fill();
+            }} />
 
             <ChipManager {...chipsManager} />
 

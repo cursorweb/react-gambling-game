@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import Home from "./routes/Home";
-import Roulette from "./routes/Roulette";
+import { Roulette } from "./routes/Roulette";
 import { ProfileContextProvider } from "./state/profileContext";
 import { Plinko } from "./routes/Plinko";
 import { Mines } from "./routes/Mines";

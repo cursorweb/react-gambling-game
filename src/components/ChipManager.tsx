@@ -15,13 +15,13 @@ export function ChipManager({ chips, placeChips, balance }: ChipsManager) {
         <>
             <div>Balance: {balance}</div>
             <div>Chips: {chips}</div>
-            {amounts.map((amt, i) => (<React.Fragment key={i}>
-                <button onClick={() => placeChips(amt)} disabled={balance < amt}>+ {amt}</button>
-                <button onClick={() => placeChips(-amt)} disabled={chips < amt}>- {amt}</button>
-            </React.Fragment>
+            {amounts.map((amt, i) => (
+                <React.Fragment key={i}>
+                    <button onClick={() => placeChips(amt)} disabled={balance < amt}>+ {amt}</button>
+                </React.Fragment>
             ))}
             <button onClick={() => placeChips(balance)}>+ All in</button>
-            <button onClick={() => placeChips(-chips)}>Cash out</button>
+            <button onClick={() => placeChips(-chips)}>Reset</button>
         </>
     );
 }
