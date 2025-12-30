@@ -1,10 +1,13 @@
 import { useContext } from "react";
 import { ProfileManagerContext } from "../state/profileContext";
 import { useChips } from "../state/chips";
+import { ChipManager } from "../components/ChipManager";
+import { Link } from "react-router";
 
 export default function Roulette() {
     const { profile } = useContext(ProfileManagerContext);
-    const { chips, placeChips, distChips } = useChips();
+    const chipsManager = useChips();
+    const { chips, awardChips } = chipsManager;
 
     return (
         <>
@@ -13,13 +16,12 @@ export default function Roulette() {
             <p>Balance: {profile.balance}</p>
             <p>Chips: {chips}</p>
 
-            <button onClick={() => placeChips(10)}>Place a chip</button>
-            <button onClick={() => placeChips(-10)}>Unplace a chip</button>
+            <ChipManager {...chipsManager} />
 
-            <button onClick={() => Math.random() < 0.5 ? distChips(chips) : distChips(-chips)}>Bet</button>
-
+            <button onClick={() => Math.random() < 0.5 ? awardChips(chips) : awardChips(-chips)}>Bet</button>
 
             <button>Spin the Wheel</button>
+            <Link to="/">Back</Link>
         </>
     );
 }

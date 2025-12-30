@@ -22,7 +22,7 @@ export function ProfileContextProvider({ children }: React.PropsWithChildren) {
     const value: ProfileManager = {
         profile,
         changeBalance(amt) {
-            setProfile({ balance: profile.balance + amt });
+            setProfile(prev => ({ ...prev, balance: prev.balance + amt }));
         }
     };
 

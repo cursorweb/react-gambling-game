@@ -1,25 +1,27 @@
 import { useContext, useState } from "react";
 import { ProfileManagerContext } from "./profileContext";
 
-export function useChips() {
-    const { changeBalance } = useContext(ProfileManagerContext);
+export interface ChipsManager {
+    placeChips(amt: number): void;
+    awardChips(amt: number): void;
+    chips: number;
+    balance: number;
+}
+
+export function useChips(): ChipsManager {
+    const { profile: { balance }, changeBalance } = useContext(ProfileManagerContext);
     const [chips, setChips] = useState(0);
 
     function placeChips(amt: number) {
-        setChips(chips + amt);
+        setChips(c => c + amt);
         changeBalance(-amt);
     }
 
-    function claimChips(amt: number) {
-        setChips(chips - amt);
-        changeBalance(+amt);
-    }
-
-    function distChips(amt: number) {
-        setChips(chips + amt);
+    function awardChips(amt: number) {
+        setChips(c => c + amt);
     }
 
     return {
-        chips, placeChips, claimChips, distChips
+        balance, chips, placeChips, awardChips
     };
 }
